@@ -132,7 +132,7 @@ class Worker
         }
 
         $this->flush(true);
-        $this->dispatchEvent(new WorkerStoppedEvent($this));
+        $this->dispatchEvent(new WorkerStoppedEvent($this, $this->receivers));
     }
 
     private function handleMessage(Envelope $envelope, string $transportName): void
