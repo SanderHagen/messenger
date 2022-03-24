@@ -21,14 +21,21 @@ use Symfony\Component\Messenger\Worker;
 final class WorkerStoppedEvent
 {
     private $worker;
+    private $receivers;
 
-    public function __construct(Worker $worker)
+    public function __construct(Worker $worker, array $receivers)
     {
         $this->worker = $worker;
+        $this->receivers = $receivers;
     }
 
     public function getWorker(): Worker
     {
         return $this->worker;
+    }
+
+    public function getReceivers(): array
+    {
+        return $this->receivers;
     }
 }
