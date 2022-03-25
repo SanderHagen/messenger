@@ -5,6 +5,7 @@ namespace Symfony\Component\Messenger\EventListener;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Messenger\Event\WorkerStoppedEvent;
+use Symfony\Component\Messenger\Transport\Receiver\MessageCountAwareInterface;
 use Symfony\Contracts\Service\ResetInterface;
 
 class ResetConnectionOnWorkerStopListener implements EventSubscriberInterface

@@ -140,6 +140,7 @@ class Worker
         $event = new WorkerMessageReceivedEvent($envelope, $transportName);
         $this->dispatchEvent($event);
         $envelope = $event->getEnvelope();
+        $this->logger?->debug('MESSENGER MAIL DEBUG: ' . md5(serialize($envelope->getMessage())) . 'HANDLE MESSAGE');
 
         if (!$event->shouldHandle()) {
             return;
@@ -213,6 +214,7 @@ class Worker
             }
 
             $receiver->ack($envelope);
+            $this->logger?->debug('MESSENGER MAIL DEBUG: ' . md5(serialize($envelope->getMessage())) . 'ACKNOWLEDGE MESSAGE');
         }
 
         return (bool) $acks;
