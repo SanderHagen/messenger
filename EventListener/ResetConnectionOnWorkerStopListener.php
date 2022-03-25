@@ -17,14 +17,11 @@ class ResetConnectionOnWorkerStopListener implements EventSubscriberInterface
 
     public function onWorkerStopped(WorkerStoppedEvent $event): void
     {
-        if ($this->logger) {
-            $this->logger->debug('Reset connection called');
-        }
+        $this->logger?->debug('Reset connection called');
         foreach($event->getReceivers() as $transportName => $receiver) {
+            $this->logger?->debug($transportName);
             if ($receiver instanceof ResetInterface) {
-                if ($this->logger) {
-                    $this->logger->debug(sprintf('Receiver for %s reset', $transportName));
-                }
+                $this->logger?->debug(sprintf('Receiver for %s reset', $transportName));
                 $receiver->reset();
             }
         }
